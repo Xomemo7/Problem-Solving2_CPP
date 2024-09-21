@@ -1,0 +1,57 @@
+#include<iostream>
+#include<String>
+using namespace std;
+int ReadPositiveNumber(string Message)
+{
+	int Number = 0;
+	do
+	{
+		cout << Message;
+		cin >> Number;
+	} while (Number < 0);
+	return Number;
+}
+void Swap(int& A, int& B)
+{
+	int Temp;
+	Temp = A;
+	A = B;
+	B = Temp;
+}
+int RandomNumber(int From, int To)
+{
+	int randNum = rand() % (To - From + 1) + From;
+	return randNum;
+}
+void FillArryWithOrderedNumbers(int &arrLength, int arr[])
+{
+	arrLength = ReadPositiveNumber("Enter number of inputs: ");
+	for (int i = 0; i < arrLength; i++)
+		arr[i] = i + 1;
+}
+
+void ShuffledArry(int arrLength, int arr[])
+{
+	for (int i = 0; i < arrLength; i++)
+		Swap(arr[RandomNumber(1, arrLength) - 1], arr[RandomNumber(1, arrLength) - 1]);
+}
+void PrintArryNumbers(int arrLength, int arr[],string Message)
+{
+	cout <<"Array elements "+Message+": ";
+	for (int i = 0; i < arrLength; i++)
+		cout << arr[i] << "  ";
+	cout << endl;
+}
+int main()
+{
+	srand((unsigned)time(NULL));
+
+	int arrLength ,arr[100];
+
+	FillArryWithOrderedNumbers(arrLength, arr);
+	PrintArryNumbers(arrLength, arr, "before shuffle");
+	ShuffledArry(arrLength, arr);
+	PrintArryNumbers(arrLength, arr,"after shuffle");
+	
+	return 0;
+}

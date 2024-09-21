@@ -1,0 +1,47 @@
+#include<iostream>
+#include<String>
+using namespace std;
+void PrintArrayOfNumbers(int arrLength, int arr[])
+{
+	cout << "Array is: ";
+	for (int i = 0; i < arrLength; i++)
+		cout << arr[i] << "  ";
+	cout << endl;
+}
+void AddArrayElement(int Number, int& arrLength, int arr[])
+{
+	arrLength++;
+	arr[arrLength - 1] = Number;
+}
+short FindNumberIndex(int arrLength, int arr[], int NumberToFind)
+{
+
+	for (int i = 0; i < arrLength; i++)
+		if (NumberToFind == arr[i])
+			return i;
+	return -1;
+}
+bool IsNumberInArray(int arrLength, int arr[], int NumberToCheck)
+{
+	return  FindNumberIndex(arrLength, arr, NumberToCheck) != -1;
+}
+void CopyDistinctNumbersInArray(int &DestinationLength, int SourceLength,int arrSource[],int arrDestination[])
+{
+	for (int i = 0; i < SourceLength; i++)
+	{
+		if(!IsNumberInArray(SourceLength,arrDestination,arrSource[i]))
+		AddArrayElement(arrSource[i], DestinationLength, arrDestination);
+	}
+}
+int main()
+{
+	srand((unsigned)time(NULL));
+	int arr2Length = 0, arrLength = 10;
+	int arr[100] = {5,10,5,5,7,2,2,5,2,10};
+	int arr2[100];
+	PrintArrayOfNumbers(arrLength, arr);
+	CopyDistinctNumbersInArray(arr2Length, arrLength, arr, arr2);
+	PrintArrayOfNumbers(arr2Length, arr2);
+
+	return 0;
+}

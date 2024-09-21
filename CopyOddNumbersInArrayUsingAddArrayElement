@@ -1,0 +1,65 @@
+#include<iostream>
+#include<String>
+using namespace std;
+int ReadPositiveNumber(string Message)
+{
+	int Number = 0;
+	do
+	{
+		cout << Message;
+		cin >> Number;
+	} while (Number < 0);
+	return Number;
+}
+int RandomNumber(int From, int To)
+{
+	int randNum = rand() % (To - From + 1) + From;
+	return randNum;
+}
+bool IsOdd(int Number)
+{
+	return(Number % 2 != 0);
+}
+void ReadRandomArryOfNumbers(int& arrLength, int arr[])
+{
+	arrLength = ReadPositiveNumber("Enter number of inputs: ");
+	for (int i = 0; i < arrLength; i++)
+	{
+		arr[i] = RandomNumber(1, 100);
+
+	}
+}
+void PrintRandomArrayOfNumbers(int arrLength, int arr[])
+{
+	cout << "Array is: ";
+	for (int i = 0; i < arrLength; i++)
+		cout << arr[i] << "  ";
+	cout << endl;
+}
+void AddArrayElement(int Number, int& arrLength, int arr[])
+{
+	arrLength++;
+	arr[arrLength - 1] = Number;
+}
+void CopyOddNumberInArrayUsingAddArrayElement(int &arr2Length, int arrLength,int arr[],int arr2[])
+{
+	for (int i = 0; i < arrLength; i++)
+	{
+		if(IsOdd(arr[i]))
+		AddArrayElement(arr[i], arr2Length, arr2);
+	}
+}
+int main()
+{
+	srand((unsigned)time(NULL));
+	int arrLength=0;
+	int arr2Length = 0;
+	int arr[100];
+	int arr2[100];
+	ReadRandomArryOfNumbers(arrLength, arr);
+	PrintRandomArrayOfNumbers(arrLength, arr);
+	CopyOddNumberInArrayUsingAddArrayElement(arr2Length,arrLength,arr,arr2);
+	PrintRandomArrayOfNumbers(arr2Length, arr2);
+
+	return 0;
+}

@@ -1,0 +1,27 @@
+#include<iostream>
+using namespace std;
+float ReadNumber(string Message)
+{
+	float Number = 0;	
+	cout << Message;
+	cin >> Number;
+	return Number;
+}
+float MyFloor(float Number)
+{
+	int IntPart = (int)Number;
+	if (Number == IntPart)
+		return IntPart;
+	if (Number >= 0)
+		return IntPart;
+	else
+		return --IntPart;
+}
+int main()
+{
+	float Number = ReadNumber("Enter a number: ");
+	cout <<"My Floor: " << MyFloor(Number)<<endl;
+	cout << "c++ Floor: " << floor(Number) << endl;
+
+	return 0;
+}

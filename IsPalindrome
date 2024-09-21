@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+int ReadPositiveNumber(string Message)
+{
+	int Number = 0;
+	do
+	{
+		cout << Message << endl;
+		cin >> Number;
+	} while (Number < 0);
+	return Number;
+}
+int GetDigitsInReverseOrder(int Number)
+{
+	int Remainder = 0, Counter = 0,NumberInReverse=0;
+	while (Number > 0)
+	{
+		Remainder = Number % 10;
+		Number = Number / 10;
+		NumberInReverse= NumberInReverse*10+Remainder;
+	}
+	return NumberInReverse;
+
+}
+bool IsPalindrome(int Number)
+{
+	return(Number == GetDigitsInReverseOrder(Number));
+}
+void PrintResult(int Number )
+{
+	bool isPalindrome = IsPalindrome(Number);
+	if (isPalindrome)
+		cout << "Number is Palindrome\n";
+	else
+		cout << "Number is not Palindrome\n";
+}
+int main()
+{
+	int Number = ReadPositiveNumber("Enter a number:");
+	PrintResult(Number);
+	return 0;
+}
+

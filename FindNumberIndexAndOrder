@@ -1,0 +1,60 @@
+#include<iostream>
+#include<String>
+using namespace std;
+int ReadPositiveNumber(string Message)
+{
+	int Number = 0;
+	do
+	{
+		cout << Message;
+		cin >> Number;
+	} while (Number < 0);
+	return Number;
+}
+int RandomNumber(int From, int To)
+{
+	int randNum = rand() % (To - From + 1) + From;
+	return randNum;
+}
+void ReadRandomArryOfNumbers(int& arrLength, int arr[])
+{
+	arrLength = ReadPositiveNumber("Enter number of inputs: ");
+	for (int i = 0; i < arrLength; i++)
+	{
+		arr[i] = RandomNumber(1, 100);
+
+	}
+}
+void PrintArrayOfNumbers(int arrLength, int arr[])
+{
+	cout << "Array is: ";
+	for (int i = 0; i < arrLength; i++)
+		cout << arr[i] << "  ";
+	cout << endl;
+}
+short FindNumberIndex(int arrLength, int arr[],int NumberToFind)
+{
+	
+	for (int i = 0; i < arrLength; i++)
+		if (NumberToFind == arr[i])
+			return i;		
+	return -1;
+}
+int main()
+{
+	srand((unsigned)time(NULL));
+	int arrLength, NumberIndex, NumberOrder, arr[100];
+	ReadRandomArryOfNumbers(arrLength, arr);
+	PrintArrayOfNumbers(arrLength, arr);
+	int NumberToFind = ReadPositiveNumber("Enter number to find: ");
+	NumberIndex=FindNumberIndex(arrLength, arr, NumberToFind);
+	if (NumberIndex == -1)
+		cout << "Number is not found\n";
+	else
+	{
+		cout << "Number Index= " << NumberIndex << endl;
+		NumberOrder = NumberIndex + 1;
+		cout << "Number Order= " << NumberOrder << endl;
+	}
+	return 0;
+}

@@ -1,0 +1,30 @@
+#include <iostream>
+#include<string>
+using namespace std;
+int ReadPositiveNumber(string Message)
+{
+	int Number = 0;
+	do
+	{
+		cout << Message << endl;
+		cin >> Number;
+	} while (Number < 0);
+	return Number;
+}
+char GetLastNumberAsChar(string StrNumber, int StrLength)
+{
+	return char(StrNumber[StrLength - 1]);
+}
+void PrintNumbersInReverse(string StrNumber, int StrLength)
+{
+	for(int Counter=0;Counter<StrLength;StrLength--)
+	cout << GetLastNumberAsChar(StrNumber, StrLength);
+}
+int main()
+{
+	string StrNumber =to_string(ReadPositiveNumber("Enter a number:"));
+	int StrLength = StrNumber.length();
+	PrintNumbersInReverse(StrNumber, StrLength);
+	return 0;
+}
+

@@ -1,0 +1,51 @@
+#include<iostream>
+#include<String>
+using namespace std;
+int ReadPositiveNumber(string Message)
+{
+	int Number = 0;
+	do
+	{
+		cout << Message;
+		cin >> Number;
+	} while (Number < 0);
+	return Number;
+}
+int RandomNumber(int From, int To)
+{
+	int randNum = rand() % (To - From + 1) + From;
+	return randNum;
+}
+void ReadRandomArryOfNumbers(int& arrLength, int arr[])
+{
+	arrLength = ReadPositiveNumber("Enter number of inputs: ");
+	for (int i = 0; i < arrLength; i++)
+	{
+		arr[i] = RandomNumber(1, 100);
+
+	}
+}
+void PrintArrayOfNumbers(int arrLength, int arr[])
+{
+	cout << "Array is: ";
+	for (int i = 0; i < arrLength; i++)
+		cout << arr[i] << "  ";
+	cout << endl;
+}
+void ReverseArrayOrder(int arrLength, int arr[],int arrReverse[])
+{
+	for (int i = 0; i < arrLength; i++)
+		arrReverse[i] = arr[arrLength - 1 - i];
+}
+int main()
+{
+	srand((unsigned)time(NULL));
+	int arrLength;
+	int arr[100],  arrReverse[100];
+	ReadRandomArryOfNumbers(arrLength, arr);
+	PrintArrayOfNumbers(arrLength, arr);
+	ReverseArrayOrder(arrLength, arr, arrReverse);
+	PrintArrayOfNumbers(arrLength, arrReverse);
+
+	return 0;
+}

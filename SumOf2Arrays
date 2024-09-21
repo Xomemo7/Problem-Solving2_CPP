@@ -1,0 +1,57 @@
+#include<iostream>
+#include<String>
+using namespace std;
+int ReadPositiveNumber(string Message)
+{
+	int Number = 0;
+	do
+	{
+		cout << Message;
+		cin >> Number;
+	} while (Number < 0);
+	return Number;
+}
+int RandomNumber(int From, int To)
+{
+	int randNum = rand() % (To - From + 1) + From;
+	return randNum;
+}
+void FillArryWithRandomNumbers(int arrLength, int arr[])
+{
+	for (int i = 0; i < arrLength; i++)
+	{
+		arr[i] = RandomNumber(1, 100);
+
+	}
+}
+
+void PrintArryWithRandomNumbers(int arrLength, int arr[],string Message)
+{
+	cout <<"Array "+Message+" elements: ";
+	for (int i = 0; i < arrLength; i++)
+		cout << arr[i] << "  ";
+	cout << endl;
+}
+void SumOf2Arrays(int arrLength,int arr[], int arr2[], int arrSum[])
+{
+	for (int i = 0; i < arrLength; i++)
+		arrSum[i] = arr[i] + arr2[i];
+}
+int main()
+{
+	srand((unsigned)time(NULL));
+
+	int arrLength = ReadPositiveNumber("Enter number of inputs: ");
+	int arr[100], arr2[100],arrSum[100];
+
+	FillArryWithRandomNumbers(arrLength, arr);
+	FillArryWithRandomNumbers(arrLength, arr2);
+
+	SumOf2Arrays(arrLength, arr, arr2, arrSum);
+
+	PrintArryWithRandomNumbers(arrLength, arr,"1");
+	PrintArryWithRandomNumbers(arrLength, arr2,"2");
+	PrintArryWithRandomNumbers(arrLength, arrSum,"sum");
+
+	return 0;
+}

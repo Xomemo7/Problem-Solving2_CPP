@@ -1,0 +1,46 @@
+#include<iostream>
+#include<String>
+using namespace std;
+int ReadPositiveNumber(string Message)
+{
+	int Number = 0;
+	do
+	{
+		cout << Message;
+		cin >> Number;
+	} while (Number < 0);
+	return Number;
+}
+void ReadOneNumberInArray(int Number,int &arrLength, int arr[])
+{
+	arrLength++;
+	arr[arrLength - 1] = Number;
+}
+void ReadAllArrayNumbersBasedOnLength(int& arrLength, int arr[])
+{
+	bool AddNumber;
+	do {
+		ReadOneNumberInArray(ReadPositiveNumber("Enter number: "),arrLength, arr);
+		cout << "Do you want to add another number?[0],[1]:\n";
+		cin >> AddNumber;
+			
+	} while (AddNumber);
+}
+void PrintArrayOfNumbers(int arrLength, int arr[])
+{
+	cout << "Array is: ";
+	for (int i = 0; i < arrLength; i++)
+		cout << arr[i] << "  ";
+	cout << endl;
+}
+int main()
+{
+	srand((unsigned)time(NULL));
+	int arrLength = 0, arr[100];
+	ReadAllArrayNumbersBasedOnLength(arrLength, arr);
+
+		PrintArrayOfNumbers(arrLength, arr);
+		cout << "Array length= " << arrLength;
+
+	return 0;
+}

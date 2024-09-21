@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+int ReadPositiveNumber(string Message)
+{
+	int Number = 0;
+	do
+	{
+		cout << Message << endl;
+		cin >> Number;
+	} while (Number < 0);
+	return Number;
+}
+bool isPerfect(int Number)
+{
+	int Sum = 0;
+	bool NumberIsPerfect = true;
+	for (int Counter = 1; Counter < Number ; Counter++)
+	{
+		if (Number % Counter == 0)
+		{
+			Sum += Counter;
+		}	
+	}
+	return(Sum == Number);
+}
+void GetAllPerfectNumberFrom1ToN(int Number)
+{
+	for (int Counter = 1; Counter <= Number; Counter++)
+	{
+		if(isPerfect(Counter))
+			cout << Counter << " is perfecet number\n";
+	}
+}
+int main()
+{
+	int Number = ReadPositiveNumber("Enter a Number");
+	GetAllPerfectNumberFrom1ToN(Number);
+	return 0;
+}
+

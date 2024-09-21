@@ -1,0 +1,57 @@
+#include<iostream>
+#include<String>
+using namespace std;
+int ReadPositiveNumber(string Message)
+{
+	int Number = 0;
+	do
+	{
+		cout << Message;
+		cin >> Number;
+	} while (Number < 0);
+	return Number;
+}
+int RandomNumber(int From, int To)
+{
+	int randNum = rand() % (To - From + 1) + From;
+	return randNum;
+}
+void ReadRandomArryOfNumbers(int& arrLength, int arr[])
+{
+	arrLength = ReadPositiveNumber("Enter number of inputs: ");
+	for (int i = 0; i < arrLength; i++)
+	{
+		arr[i] = RandomNumber(-100,100);
+
+	}
+}
+void PrintRandomArrayOfNumbers(int arrLength, int arr[])
+{
+	cout << "Array is: ";
+	for (int i = 0; i < arrLength; i++)
+		cout << arr[i] << "  ";
+	cout << endl;
+}
+bool IsPositive(int Number)
+{
+	return(Number>0);
+}
+int CountOfPositiveNumbersInArray(int arrLength, int arr[])
+{
+	int CountOfPositive = 0;
+	for (int i = 0; i < arrLength; i++)
+		if (IsPositive(arr[i]))
+			CountOfPositive++;
+	return CountOfPositive;
+}
+int main()
+{
+	srand((unsigned)time(NULL));
+	int arrLength;
+	int arr[100];
+	ReadRandomArryOfNumbers(arrLength, arr);
+	PrintRandomArrayOfNumbers(arrLength, arr);
+	cout << "Count of positive numbers in array is: " << CountOfPositiveNumbersInArray(arrLength, arr) << endl;
+
+	return 0;
+}

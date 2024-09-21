@@ -1,0 +1,54 @@
+#include<iostream>
+#include<String>
+using namespace std;
+int ReadPositiveNumber(string Message)
+{
+	int Number = 0;
+	do
+	{
+		cout << Message;
+		cin >> Number;
+	} while (Number < 0);
+	return Number;
+}
+void ReadArryOfNumbers(int &arrLength,int arr[])
+{
+	string strNumber;
+	arrLength=ReadPositiveNumber("Enter number of inputs: ");
+	for (int i = 0; i < arrLength; i++)
+	{
+		strNumber = to_string(i + 1);
+		arr[i]=ReadPositiveNumber("Enter Element [" + strNumber + "]:");	
+	}
+}
+bool CheckNumberExistenceInArray(int Number, int NumberToCheck)
+{
+	
+	return (NumberToCheck == Number);
+}
+int CountNumberExistenceInArray(int arrLength,int arr[], int NumberToCheck)
+{
+	int Counter = 0;
+	for(int i=0;i<arrLength;i++)
+	if (CheckNumberExistenceInArray(arr[i], NumberToCheck))
+		Counter++;
+	return Counter;
+}
+void PrintArrayOfNumbers(int arrLength, int arr[])
+{
+	cout << "Original Array is: ";
+	for (int i = 0; i < arrLength; i++)
+		cout << arr[i];
+	cout << endl;
+}
+int main()
+{
+	int arrLength;
+	int arr[100];
+	ReadArryOfNumbers(arrLength, arr);
+	PrintArrayOfNumbers(arrLength, arr);
+	int NumberToCheck = ReadPositiveNumber("Enter number to know its frequency: ");
+	cout << "Number " << NumberToCheck << " is repeated " << CountNumberExistenceInArray(arrLength, arr,NumberToCheck)<<" Times";
+
+	return 0;
+}

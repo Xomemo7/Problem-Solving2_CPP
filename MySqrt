@@ -1,0 +1,26 @@
+#include<iostream>
+using namespace std;
+int ReadPositiveNumber(string Message)
+{
+	int Number = 0;
+	do
+	{
+		cout << Message << endl;
+		cin >> Number;
+	} while (Number < 0);
+	return Number;
+}
+float MySqrt(float Number)
+{
+	float Sqrt;
+	Sqrt =pow(Number,.5);
+	return Sqrt;
+}
+int main()
+{
+	float Number = ReadPositiveNumber("Enter a positive number: ");
+	cout << "My SQRT: " << MySqrt(Number) << endl;
+	cout << "c++ SQRT: " << sqrt(Number) << endl;
+
+	return 0;
+}

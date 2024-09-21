@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+int ReadPositiveNumber(string Message)
+{
+	int Number = 0;
+	do
+	{
+		cout << Message << endl;
+		cin >> Number;
+	} while (Number < 0);
+	return Number;
+}
+bool isPrime(int Number)
+{
+	bool NumberIsPrime = true;
+	for (int Counter = 2; Counter <= (Number / 2); Counter++)
+	{
+		if (Number % Counter == 0)
+		{
+			NumberIsPrime = false;
+			return NumberIsPrime;
+		}		
+	}
+	return NumberIsPrime;
+}
+void PrintAllPrimeNumbers(int Number)
+{
+	for (int Counter = 1; Counter <= Number; Counter++)
+	{
+		if (isPrime(Counter))
+			cout << Counter<<endl;
+	}
+}
+int main()
+{
+	PrintAllPrimeNumbers(ReadPositiveNumber("Enter Positive Number: "));
+	
+	return 0;
+}
+

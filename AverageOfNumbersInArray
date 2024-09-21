@@ -1,0 +1,56 @@
+#include<iostream>
+#include<String>
+using namespace std;
+int ReadPositiveNumber(string Message)
+{
+	int Number = 0;
+	do
+	{
+		cout << Message;
+		cin >> Number;
+	} while (Number < 0);
+	return Number;
+}
+int RandomNumber(int From, int To)
+{
+	int randNum = rand() % (To - From + 1) + From;
+	return randNum;
+}
+int SumOfArray(int arrLength, int arr[])
+{
+	int Sum = 0;
+	for (int i = 0; i < arrLength; i++)
+		Sum += arr[i];
+	return Sum;
+}
+float AverageOfArray(int arrLength, int arr[])
+{
+	return (float(SumOfArray(arrLength, arr))/ arrLength);
+}
+void ReadRandomArryOfNumbers(int &arrLength,int arr[])
+{
+	arrLength=ReadPositiveNumber("Enter number of inputs: ");
+	for (int i = 0; i < arrLength; i++)
+	{
+		arr[i]=RandomNumber(1, 100);
+			
+	}
+}
+void PrintRandomArrayOfNumbers(int arrLength, int arr[])
+{
+	cout << "Array is: ";
+	for (int i = 0; i < arrLength; i++)
+		cout << arr[i]<<"  ";
+	cout << endl;
+}
+int main()
+{
+	srand((unsigned)time(NULL));
+	int arrLength;
+	int arr[100];
+	ReadRandomArryOfNumbers(arrLength, arr);
+	PrintRandomArrayOfNumbers(arrLength, arr);
+	cout<<"Sum= "<<SumOfArray(arrLength, arr)<<endl;
+	cout << "Average= " << AverageOfArray(arrLength, arr);
+	return 0;
+}
